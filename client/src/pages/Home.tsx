@@ -8,6 +8,8 @@ import {
   FileArchive,
   Gauge,
   LockKeyhole,
+  Pause,
+  Play,
   Radio,
   Route,
   Wifi,
@@ -35,6 +37,54 @@ function SectionMarker({ number, label }: { number: string; label: string }) {
       <span>{number}</span>
       <span>{label}</span>
     </div>
+  );
+}
+
+function GlobalMeshMap() {
+  const [selectedNode, setSelectedNode] = useState("lisbon");
+  const [paused, setPaused] = useState(false);
+  const nodes = [
+    { id: "seattle", name: "SEATTLE", x: 122, y: 135, kind: "Relay", meta: "Wi‑Fi HaLow bridge" },
+    { id: "new-york", name: "NEW YORK", x: 312, y: 178, kind: "Relay", meta: "LoRa / FSK" },
+    { id: "lisbon", name: "LISBON", x: 488, y: 245, kind: "Destination", meta: "Android · NODE 04" },
+    { id: "lagos", name: "LAGOS", x: 535, y: 360, kind: "Relay", meta: "LoRa / FSK" },
+    { id: "dubai", name: "DUBAI", x: 704, y: 270, kind: "Relay", meta: "LoRa / FSK" },
+    { id: "singapore", name: "SINGAPORE", x: 860, y: 360, kind: "Relay", meta: "Wi‑Fi HaLow bridge" },
+    { id: "tokyo", name: "TOKYO", x: 920, y: 160, kind: "Origin", meta: "Windows · NODE 01" },
+  ];
+  const routes = [
+    "M920 160 C850 145 775 220 704 270",
+    "M704 270 C625 245 570 232 488 245",
+    "M704 270 C770 305 820 345 860 360",
+    "M488 245 C425 210 370 180 312 178",
+    "M312 178 C250 155 180 128 122 135",
+    "M535 360 C515 320 500 280 488 245",
+    "M860 360 C885 290 905 225 920 160",
+  ];
+  const activeRoutes = [0, 1, 3, 4];
+  const selected = nodes.find((node) => node.id === selectedNode) ?? nodes[2];
+
+  return (
+    <section className="global-map section-dark" id="map">
+      <div className="container">
+        <div className="section-head"><SectionMarker number="LIVE MAP" label="Маршрутизация" /><span className="head-meta">CONCEPTUAL GLOBAL MESH / DEMO</span></div>
+        <div className="map-heading"><div><h2>Пакет знает<br /><span>следующий узел.</span></h2><p>Нажмите на узел, чтобы увидеть его роль в маршруте. Анимация показывает, как файл движется по сети через store-and-forward.</p></div><div className="map-controls"><button onClick={() => setPaused(!paused)} aria-label={paused ? "Продолжить анимацию" : "Поставить анимацию на паузу"}>{paused ? <Play size={15} /> : <Pause size={15} />}{paused ? "CONTINUE" : "PAUSE"}</button><span className="mono">ROUTE / 04 HOPS</span></div></div>
+        <div className={`map-shell ${paused ? "is-paused" : ""}`}>
+          <div className="map-meta map-meta-left"><span className="mono">FILE ROUTE</span><strong>mission_archive.zip</strong><small>70.0 GB / CHUNK 7 424</small></div>
+          <svg className="mesh-map" viewBox="0 0 1000 480" role="img" aria-label="Анимированная схема маршрута файла через глобальную mesh-сеть">
+            <defs><pattern id="mapDots" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".8" fill="rgba(243,168,59,.2)" /></pattern><filter id="mapGlow"><feGaussianBlur stdDeviation="4" result="blur" /><feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge></filter></defs>
+            <rect width="1000" height="480" fill="url(#mapDots)" opacity=".4" />
+            <path className="continent continent-a" d="M74 118l46-29 66 8 53 43-18 44-63 24-52-30-42 4-25-29z" /><path className="continent continent-b" d="M382 216l45-18 51 21 21 43-23 41-40 11-30-47-35-27z" /><path className="continent continent-c" d="M596 139l68-28 83 24 21 48-39 36-50-6-47 34-42-34z" /><path className="continent continent-d" d="M690 307l57-14 79 31 16 47-67 38-60-17-39-44z" />
+            {routes.map((route, index) => <path key={route} className={`route-line ${activeRoutes.includes(index) ? "active-route" : ""}`} d={route} />)}
+            {routes.map((route, index) => <g key={`packet-${index}`} className={activeRoutes.includes(index) ? "packet-group" : "packet-group dim-packet"}><circle r={index % 2 ? 3 : 4} className="packet" key={`${paused}-${index}`}><animateMotion dur={`${3.2 + index * .3}s`} repeatCount="indefinite" begin={paused ? "indefinite" : "0s"} path={route} /></circle></g>)}
+            {nodes.map((node) => <g key={node.id} className={`map-node ${node.id === selectedNode ? "selected-node" : ""}`} role="button" tabIndex={0} aria-label={`${node.name}, ${node.kind}`} onClick={() => setSelectedNode(node.id)} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") setSelectedNode(node.id); }}><circle className="node-halo" cx={node.x} cy={node.y} r="17" /><circle className="node-core" cx={node.x} cy={node.y} r="5" /><text x={node.x + 13} y={node.y - 10}>{node.name}</text></g>)}
+            <g className="map-legend"><circle cx="29" cy="436" r="4" /><text x="42" y="440">ACTIVE ROUTE</text><circle cx="174" cy="436" r="4" className="legend-dim" /><text x="187" y="440">AVAILABLE LINK</text></g>
+          </svg>
+          <div className="map-meta map-meta-right"><span className="mono">SELECTED NODE</span><strong>{selected.name}</strong><small>{selected.kind} / {selected.meta}</small><span className="node-state"><i /> READY TO RELAY</span></div>
+        </div>
+        <div className="map-footer"><span><b>01</b> ORIGIN / TOKYO</span><span className="map-arrow">→</span><span><b>02</b> RELAY / DUBAI</span><span className="map-arrow">→</span><span><b>03</b> DESTINATION / LISBON</span><span className="map-live"><i /> PACKETS MOVING</span></div>
+      </div>
+    </section>
   );
 }
 
@@ -101,6 +151,8 @@ export default function Home() {
           <div className="principles"><div><span>01</span><strong>Сообщения</strong><p>Короткие пакеты идут по дальнему каналу, с подтверждением каждого участка.</p></div><div><span>02</span><strong>Маршруты</strong><p>Промежуточные узлы расширяют зону связи без центрального сервера.</p></div><div><span>03</span><strong>Состояние</strong><p>Очередь хранится локально — отключение не стирает прогресс.</p></div></div>
         </div>
       </section>
+
+      <GlobalMeshMap />
 
       <section className="modes section-paper" id="modes">
         <div className="container">
