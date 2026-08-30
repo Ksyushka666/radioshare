@@ -14,7 +14,7 @@ RadioShare — концепция автономного обмена сообщ
 
 ## Сборка
 
-Для сайта используйте `pnpm install && pnpm run build`. Для нативных release-сборок смотрите [`native/RELEASE.md`](native/RELEASE.md). Подписывающие ключи не хранятся в репозитории.
+Для сайта используйте `pnpm install && pnpm run build`. Для нативных release-сборок смотрите [`native/RELEASE.md`](native/RELEASE.md). Настройка оборудования описана в [`docs/hardware-setup.md`](docs/hardware-setup.md). Подписывающие ключи не хранятся в репозитории.
 
 ## Лицензия и статус
 
