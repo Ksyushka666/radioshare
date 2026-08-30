@@ -16,6 +16,8 @@ import {
   Wifi,
 } from "lucide-react";
 
+const assetPath = (name: string) => `${import.meta.env.BASE_URL}assets/${name}`;
+
 const sections = [
   { id: "system", label: "Система" },
   { id: "modes", label: "Режимы" },
@@ -97,7 +99,7 @@ export default function Home() {
     <main>
       <header className="site-header">
         <a className="brand" href="#top" aria-label="RadioShare — на главную">
-          <img src="/manus-storage/radioshare-logo_37d11637.png" alt="" />
+          <img src={assetPath("radioshare-logo.jpg")} alt="" />
           <span>Radio<span>Share</span></span>
         </a>
         <nav className="main-nav" aria-label="Основная навигация">
@@ -112,7 +114,7 @@ export default function Home() {
 
       <section className="hero" id="top">
         <div className="hero-art" aria-hidden="true">
-          <img src="/manus-storage/radioshare-hero_7d84bb74.png" alt="" />
+          <img src={assetPath("radioshare-hero.jpg")} alt="" />
           <div className="hero-grid" />
           <div className="hero-pulse" />
         </div>
@@ -147,7 +149,7 @@ export default function Home() {
           <div className="section-head"><SectionMarker number="01/03" label="Как работает слой" /><span className="head-meta">STORE / FORWARD / DELIVER</span></div>
           <div className="architecture-grid">
             <div className="arch-copy"><h2>Дальше —<br /><span>через узлы.</span></h2><p>Каждый шлюз видит соседние узлы, запоминает маршрут и передаёт пакет дальше. Если связь оборвалась, система не начинает сначала.</p><a className="arrow-link" href="#transfer">Разобрать передачу <ArrowUpRight size={16} /></a></div>
-            <div className="mesh-visual"><img src="/manus-storage/radioshare-mesh_8c32d596.png" alt="Схема mesh-сети с ретрансляционными узлами" /><div className="mesh-caption"><span className="mono">MESH TOPOLOGY / 07 NODES</span><span>ROUTE HEALTH <b>GOOD</b></span></div></div>
+            <div className="mesh-visual"><img src={assetPath("radioshare-mesh.jpg")} alt="Схема mesh-сети с ретрансляционными узлами" /><div className="mesh-caption"><span className="mono">MESH TOPOLOGY / 07 NODES</span><span>ROUTE HEALTH <b>GOOD</b></span></div></div>
           </div>
           <div className="principles"><div><span>01</span><strong>Сообщения</strong><p>Короткие пакеты идут по дальнему каналу, с подтверждением каждого участка.</p></div><div><span>02</span><strong>Маршруты</strong><p>Промежуточные узлы расширяют зону связи без центрального сервера.</p></div><div><span>03</span><strong>Состояние</strong><p>Очередь хранится локально — отключение не стирает прогресс.</p></div></div>
         </div>
@@ -193,7 +195,7 @@ export default function Home() {
         <div className="container downloads-layout"><div><SectionMarker number="GET THE BUILD" label="Загрузки" /><h2>Поставить<br /><span>на устройство.</span></h2><p>Альфа-сборки уже опубликованы в репозитории. Перед подключением радиошлюза изучите руководство по настройке оборудования и региональным ограничениям.</p></div><div className="download-list"><a className="download-card" href="https://github.com/Ksyushka666/radioshare/releases/download/v0.1.0-alpha/RadioShare-0.1.0-alpha.exe" target="_blank" rel="noreferrer"><div className="download-icon"><Radio size={22} /></div><div><span className="mono">DESKTOP CLIENT</span><strong>RadioShare для Windows</strong><small>Windows 10/11 · x64 · Alpha 0.1.0</small></div><span className="download-arrow"><ArrowUpRight size={17} /></span></a><a className="download-card" href="https://github.com/Ksyushka666/radioshare/releases/download/v0.1.0-alpha/RadioShare-0.1.0-alpha.apk" target="_blank" rel="noreferrer"><div className="download-icon"><Smartphone size={22} /></div><div><span className="mono">MOBILE CLIENT</span><strong>RadioShare для Android</strong><small>Android 9+ · APK · Alpha 0.1.0</small></div><span className="download-arrow"><ArrowUpRight size={17} /></span></a><div className="download-note"><span className="status-dot" /> <a href="https://github.com/Ksyushka666/radioshare/releases/tag/v0.1.0-alpha" target="_blank" rel="noreferrer">Смотреть все файлы последнего Alpha Release <ArrowUpRight size={14} /></a></div></div></div>
       </section>
 
-      <footer className="site-footer" id="contact"><div className="container footer-top"><div className="footer-brand"><div className="brand"><img src="/manus-storage/radioshare-logo_37d11637.png" alt="" /><span>Radio<span>Share</span></span></div><p>Радиослой для связи<br />без обязательного облака.</p></div><div className="footer-cta"><span className="mono">NEXT STEP / PROTOTYPE</span><h2>Собрать<br /><em>полевую версию.</em></h2><a className="button button-primary" href="#downloads">Получить сборку <ArrowUpRight size={17} /></a></div></div><div className="container footer-bottom"><span>© 2026 RadioShare</span><span>DESIGNED FOR DISCONNECTED PLACES</span><span className="footer-status"><i /> SYSTEM CONCEPT / ONLINE</span></div></footer>
+      <footer className="site-footer" id="contact"><div className="container footer-top"><div className="footer-brand"><div className="brand"><img src={assetPath("radioshare-logo.jpg")} alt="" /><span>Radio<span>Share</span></span></div><p>Радиослой для связи<br />без обязательного облака.</p></div><div className="footer-cta"><span className="mono">NEXT STEP / PROTOTYPE</span><h2>Собрать<br /><em>полевую версию.</em></h2><a className="button button-primary" href="#downloads">Получить сборку <ArrowUpRight size={17} /></a></div></div><div className="container footer-bottom"><span>© 2026 RadioShare</span><span>DESIGNED FOR DISCONNECTED PLACES</span><span className="footer-status"><i /> SYSTEM CONCEPT / ONLINE</span></div></footer>
     </main>
   );
 }
