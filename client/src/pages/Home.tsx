@@ -12,6 +12,7 @@ import {
   Play,
   Radio,
   Route,
+  Smartphone,
   Wifi,
 } from "lucide-react";
 
@@ -106,7 +107,7 @@ export default function Home() {
             </a>
           ))}
         </nav>
-        <a className="header-action" href="#contact">Узнать о прототипе <ArrowUpRight size={16} /></a>
+        <a className="header-action" href="#downloads">Скачать приложения <ArrowUpRight size={16} /></a>
       </header>
 
       <section className="hero" id="top">
@@ -188,7 +189,11 @@ export default function Home() {
         ].map(([question, answer], index) => <div className={`faq-item ${openFaq === index ? "open" : ""}`} key={question}><button onClick={() => setOpenFaq(openFaq === index ? null : index)} aria-expanded={openFaq === index}><span>0{index + 1}</span><strong>{question}</strong><ChevronDown size={18} /></button><div className="faq-answer"><p>{answer}</p></div></div>)}</div></div>
       </section>
 
-      <footer className="site-footer" id="contact"><div className="container footer-top"><div className="footer-brand"><div className="brand"><img src="/manus-storage/radioshare-logo_37d11637.png" alt="" /><span>Radio<span>Share</span></span></div><p>Радиослой для связи<br />без обязательного облака.</p></div><div className="footer-cta"><span className="mono">NEXT STEP / PROTOTYPE</span><h2>Собрать<br /><em>полевую версию.</em></h2><a className="button button-primary" href="mailto:hello@radioshare.local">Обсудить прототип <ArrowUpRight size={17} /></a></div></div><div className="container footer-bottom"><span>© 2026 RadioShare</span><span>DESIGNED FOR DISCONNECTED PLACES</span><span className="footer-status"><i /> SYSTEM CONCEPT / ONLINE</span></div></footer>
+      <section className="downloads section-paper" id="downloads">
+        <div className="container downloads-layout"><div><SectionMarker number="GET THE BUILD" label="Загрузки" /><h2>Поставить<br /><span>на устройство.</span></h2><p>Приложения для Windows и Android появятся здесь после публикации первой сборки. Пока можно запросить тестовый доступ к прототипу.</p></div><div className="download-list"><a className="download-card" href="mailto:hello@radioshare.local?subject=RadioShare%20Windows%20build"><div className="download-icon"><Radio size={22} /></div><div><span className="mono">DESKTOP CLIENT</span><strong>RadioShare для Windows</strong><small>Windows 10/11 · x64 · прототип</small></div><span className="download-arrow"><ArrowUpRight size={17} /></span></a><a className="download-card" href="mailto:hello@radioshare.local?subject=RadioShare%20Android%20build"><div className="download-icon"><Smartphone size={22} /></div><div><span className="mono">MOBILE CLIENT</span><strong>RadioShare для Android</strong><small>Android 9+ · APK · прототип</small></div><span className="download-arrow"><ArrowUpRight size={17} /></span></a><div className="download-note"><span className="status-dot" /> Ссылки ведут на запрос тестовой сборки — публичные установщики ещё не опубликованы.</div></div></div>
+      </section>
+
+      <footer className="site-footer" id="contact"><div className="container footer-top"><div className="footer-brand"><div className="brand"><img src="/manus-storage/radioshare-logo_37d11637.png" alt="" /><span>Radio<span>Share</span></span></div><p>Радиослой для связи<br />без обязательного облака.</p></div><div className="footer-cta"><span className="mono">NEXT STEP / PROTOTYPE</span><h2>Собрать<br /><em>полевую версию.</em></h2><a className="button button-primary" href="#downloads">Получить сборку <ArrowUpRight size={17} /></a></div></div><div className="container footer-bottom"><span>© 2026 RadioShare</span><span>DESIGNED FOR DISCONNECTED PLACES</span><span className="footer-status"><i /> SYSTEM CONCEPT / ONLINE</span></div></footer>
     </main>
   );
 }
