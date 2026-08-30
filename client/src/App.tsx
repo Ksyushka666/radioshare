@@ -14,8 +14,8 @@ function Router() {
       <Route path={"/radioshare/"} component={Home} />
       <Route path={"/radioshare"} component={Home} />
       <Route path={"/404"} component={NotFound} />
-      {/* Final fallback route */}
-      <Route component={NotFound} />
+      {/* GitHub Pages may preserve the repository prefix in the pathname. Keep the public homepage reachable instead of showing a false 404. */}
+      <Route component={Home} />
     </Switch>
   );
 }
