@@ -144,6 +144,15 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="quick-start section-paper" id="quick-start">
+        <div className="container quick-start-layout">
+          <div className="quick-start-heading"><SectionMarker number="START" label="Быстрый старт" /><h2>Пять минут<br /><span>до первого ping.</span></h2><p>Начните с локального теста. Радиоэфир подключается только после проверки оборудования и регионального профиля.</p><a className="arrow-link" href="https://github.com/Ksyushka666/radioshare/blob/main/docs/hardware-setup.md" target="_blank" rel="noreferrer">Открыть полное руководство <ArrowUpRight size={16} /></a></div>
+          <div className="quick-start-steps">
+            {[['01','Установите приложение','Скачайте Alpha для Windows или Android из GitHub.'],['02','Подключите шлюз','Используйте LoRa-модуль через USB/Bluetooth или запустите simulated bridge.'],['03','Выберите профиль','Укажите регион, частоту и параметры PHY из паспорта оборудования.'],['04','Проверьте ping','Сначала включите приём, затем отправьте короткое тестовое сообщение соседнему узлу.'],['05','Передайте файл','Для больших файлов включите быстрый Wi‑Fi-мост: LoRa переносит управление, не 70 ГБ.']].map(([number,title,body]) => <div className="quick-step" key={number}><span className="quick-step-number">{number}</span><div><strong>{title}</strong><p>{body}</p></div></div>)}
+          </div>
+        </div>
+      </section>
+
       <section className="architecture section-dark">
         <div className="container">
           <div className="section-head"><SectionMarker number="01/03" label="Как работает слой" /><span className="head-meta">STORE / FORWARD / DELIVER</span></div>

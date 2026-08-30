@@ -81,3 +81,18 @@ button { font:inherit; }
 @media (prefers-reduced-motion:no-preference) { .route-line.active-route { animation:routeDash 2.7s linear infinite; }.map-node.selected-node .node-halo { animation:nodePulse 1.8s ease-in-out infinite; }.map-live i { animation:nodePulse 1.4s ease-in-out infinite; } }
 @keyframes routeDash { to { stroke-dashoffset:-40; } } @keyframes nodePulse { 50% { opacity:.35; } }
 @media (max-width:850px) { .global-map{padding:72px 0 80px}.map-heading{display:block;padding:50px 0 30px}.map-controls{margin-top:25px;justify-content:space-between}.map-shell{min-height:520px}.mesh-map{min-height:520px;transform:scale(1.18);transform-origin:center}.map-meta-right{right:12px;bottom:12px}.map-meta-left{left:12px;top:12px}.map-footer{flex-wrap:wrap;gap:10px}.map-live{width:100%;margin-left:0;margin-top:7px} }
+
+/* Quick start: строгая инженерная сетка, янтарные маркеры и спокойный ритм для первого запуска. */
+.quick-start { border-top:1px solid rgba(21,25,24,.18); border-bottom:1px solid rgba(21,25,24,.18); }
+.quick-start-layout { display:grid; grid-template-columns:minmax(250px,.78fr) 1.22fr; gap:clamp(2.5rem,8vw,9rem); padding-top:clamp(4.5rem,9vw,8rem); padding-bottom:clamp(4.5rem,9vw,8rem); }
+.quick-start-heading h2 { margin:1.7rem 0 1.25rem; max-width:11ch; }
+.quick-start-heading h2 span { color:var(--amber); }
+.quick-start-heading > p { max-width:32rem; color:#66706b; line-height:1.7; }
+.quick-start-heading .arrow-link { margin-top:1.5rem; }
+.quick-start-steps { border-top:1px solid rgba(21,25,24,.24); }
+.quick-step { display:grid; grid-template-columns:3.5rem 1fr; gap:1rem; padding:1.35rem 0; border-bottom:1px solid rgba(21,25,24,.16); transition:padding-left .2s var(--ease-out), background .2s ease; }
+.quick-step:hover { padding-left:.65rem; background:rgba(232,159,45,.07); }
+.quick-step-number { color:var(--amber-deep); font:600 .72rem 'IBM Plex Mono',monospace; letter-spacing:.1em; padding-top:.18rem; }
+.quick-step strong { display:block; color:#151918; font:600 1.08rem 'Space Grotesk',sans-serif; letter-spacing:-.02em; }
+.quick-step p { margin:.3rem 0 0; max-width:35rem; color:#66706b; font-size:.91rem; line-height:1.55; }
+@media (max-width:760px) { .quick-start-layout { grid-template-columns:1fr; gap:2.5rem; } .quick-start-heading h2 { max-width:14ch; } .quick-step { grid-template-columns:2.7rem 1fr; } .quick-step strong { font-size:1rem; } }
